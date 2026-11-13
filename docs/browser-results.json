@@ -1,0 +1,437 @@
+{
+  "pages": 72,
+  "results": [
+    {
+      "url": "/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/support/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/terms/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/legal-history/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/support/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/terms/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/legal-history/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/support/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/terms/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/legal-history/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 1440,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/support/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/terms/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/legal-history/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/support/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/terms/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/legal-history/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/support/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/terms/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/legal-history/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 390,
+      "scheme": "light",
+      "status": 200
+    },
+    {
+      "url": "/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/support/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/terms/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/legal-history/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/support/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/terms/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/legal-history/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/uk/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/support/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/terms/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/legal-history/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    },
+    {
+      "url": "/ru/products/ledglet/legal-history/2026-11-08/privacy/",
+      "width": 320,
+      "scheme": "dark",
+      "status": 200
+    }
+  ]
+}
