@@ -77,7 +77,7 @@
     "back_product": "Back to Ledglet",
     "page_description": "Independent apps by Kostiantyn Bilous. Explore Ledglet and find support, privacy and terms.",
     "current_version": "Current version",
-    "release_changes": "Publisher identity, product-specific legal destinations and paid-beta Terms. Notification, exchange-rate, backup and retention disclosures are retained. Purchase provisions apply when offered in the app.",
+    "release_changes": "Publisher identity, product-specific legal destinations and paid-beta Terms. Notification, exchange-rate, backup and retention disclosures are retained. Purchase provisions apply when offered in the app. This update adds disclosures for purchase and promo verification and for the records used to start or recover a Pro Preview.",
     "hosting_privacy": "GitHub Privacy Statement"
   },
   "uk": {
@@ -158,7 +158,7 @@
     "back_product": "Повернутися до Ledglet",
     "page_description": "Незалежні застосунки від Kostiantyn Bilous. Ledglet, підтримка, конфіденційність та умови.",
     "current_version": "Поточна версія",
-    "release_changes": "Назва видавця, окремі адреси юридичних документів і умови платної бета-версії. Збережено пояснення про сповіщення, курси, резервні копії та строки зберігання. Положення про купівлю застосовуються, коли вона пропонується в застосунку.",
+    "release_changes": "Назва видавця, окремі адреси юридичних документів і умови платної бета-версії. Збережено пояснення про сповіщення, курси, резервні копії та строки зберігання. Положення про купівлю застосовуються, коли вона пропонується в застосунку. Це оновлення додає пояснення щодо перевірки покупок і промокодів та записів, що дають змогу розпочати або відновити пробний період Pro.",
     "hosting_privacy": "Заява GitHub про конфіденційність"
   },
   "ru": {
@@ -239,7 +239,7 @@
     "back_product": "Вернуться к Ledglet",
     "page_description": "Независимые приложения от Kostiantyn Bilous. Ledglet, поддержка, конфиденциальность и условия.",
     "current_version": "Текущая версия",
-    "release_changes": "Название издателя, отдельные адреса юридических документов и условия платной бета-версии. Сохранены пояснения об уведомлениях, курсах, резервных копиях и сроках хранения. Положения о покупке применяются, когда она предлагается в приложении.",
+    "release_changes": "Название издателя, отдельные адреса юридических документов и условия платной бета-версии. Сохранены пояснения об уведомлениях, курсах, резервных копиях и сроках хранения. Положения о покупке применяются, когда она предлагается в приложении. В этом обновлении добавлены сведения о проверке покупок и промокодов и о записях, которые позволяют начать или восстановить пробный период Pro.",
     "hosting_privacy": "Заявление GitHub о конфиденциальности"
   }
 }
