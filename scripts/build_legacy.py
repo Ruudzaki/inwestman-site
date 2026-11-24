@@ -10,13 +10,14 @@ from build_site import metadata, prepare_output, render, route
 
 
 def verify_canonical(config):
+    version = escape(config.get('privacy_version', config['legal_version']))
     for lang in config['languages']:
         url = config['origin'] + route(lang, 'privacy')
         with urlopen(url, timeout=20) as response:
             if response.status != 200 or response.geturl() != url:
                 raise ValueError(f'Canonical policy is not verified: {url}')
             body = response.read().decode('utf-8')
-        if 'data-legal-status="approved"' not in body or escape(config['legal_version']) not in body:
+        if 'data-legal-status="approved"' not in body or f'<dd>{version}</dd>' not in body:
             raise ValueError(f'Canonical policy version/approval mismatch: {url}')
 
 

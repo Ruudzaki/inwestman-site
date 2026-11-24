@@ -8,11 +8,15 @@ from pathlib import Path
 import re
 import shutil
 
+ARCHIVED_PRIVACY = {'archive': '2026-11-08', 'previous_privacy': '2026-11-24'}
 ROUTES = {
     'home': '', 'product': 'products/ledglet', 'support': 'support',
     'website_privacy': 'privacy', 'privacy': 'products/ledglet/privacy',
     'terms': 'products/ledglet/terms', 'history': 'products/ledglet/legal-history',
-    'archive': 'products/ledglet/legal-history/2026-11-08/privacy',
+    **{
+        page: f'products/ledglet/legal-history/{version}/privacy'
+        for page, version in ARCHIVED_PRIVACY.items()
+    },
 }
 
 
@@ -89,13 +93,22 @@ def page_body(source, lang, page, t, config):
         title = t['history']
         current = t['current_draft'] if config['legal_status'] == 'draft' else t['current_version']
         changes = t['draft_changes'] if config['legal_status'] == 'draft' else t['release_changes']
-        body = f'<section class="page-intro"><p class="eyebrow">LEDGLET</p><h1>{title}</h1><p class="lead">{t["history_intro"]}</p></section><section class="reading-copy"><h2>{current}</h2><p>{changes}</p>{legal_links}<h2>{t["archive_title"]}</h2><p>{t["archive_text"]}</p>{link(route(lang,"archive"),t["archive_link"],"text-link")}</section>'
+        archive_links = ''.join(
+            f'<li>{link(route(lang, archive_page), t[label], "text-link")}</li>'
+            for archive_page, label in (
+                ('previous_privacy', 'previous_privacy_link'), ('archive', 'archive_link'),
+            )
+        )
+        body = f'<section class="page-intro"><p class="eyebrow">LEDGLET</p><h1>{title}</h1><p class="lead">{t["history_intro"]}</p></section><section class="reading-copy"><h2>{current}</h2><p>{changes}</p>{legal_links}<h2>{t["archive_title"]}</h2><p>{t["archive_text"]}</p><ul>{archive_links}</ul></section>'
         return title, body
-    if page == 'archive':
-        content = (source / f'content/archive/2026-11-08/{lang}/privacy.html').read_text()
-        title = re.search(r'<h1>(.*?)</h1>', content, re.S).group(1)
-        content = re.sub(r'<h1>.*?</h1>', '', content, count=1, flags=re.S)
-        intro = f'<p class="archive-note">{t["archived"]}</p>'
+    if page in ARCHIVED_PRIVACY:
+        content = (source / f'content/archive/{ARCHIVED_PRIVACY[page]}/{lang}/privacy.html').read_text()
+        heading = re.search(r'<h1>(.*?)</h1>', content, re.S)
+        title = heading.group(1) if heading else t['privacy_title']
+        if heading:
+            content = content[:heading.start()] + content[heading.end():]
+        note = t['archived'] if page == 'archive' else t['previous_privacy_archived']
+        intro = f'<p class="archive-note">{note}</p>'
     else:
         content = (source / f'content/{lang}/{page}.html').read_text()
         title = t[page + '_title']
@@ -109,19 +122,23 @@ def render(source, lang, page, config, translations):
     origin = config['origin']
     canonical = origin + route(lang, page)
     is_draft = config['legal_status'] == 'draft'
-    status = 'archived' if page == 'archive' else config['legal_status']
-    version = config['legacy_policy_version'] if page == 'archive' else config['legal_version']
-    effective = config['legacy_policy_version'] if page == 'archive' else config['effective_date'] or t['not_effective']
+    archive_version = ARCHIVED_PRIVACY.get(page)
+    status = 'archived' if archive_version else config['legal_status']
+    version = archive_version or config['legal_version']
+    if page == 'privacy':
+        version = config.get('privacy_version', version)
+    effective = archive_version or config['effective_date'] or t['not_effective']
     meta = f'<dl class="legal-meta" data-legal-status="{status}"><div><dt>{t["version"]}</dt><dd>{version}</dd></div><div><dt>{t["effective"]}</dt><dd>{effective}</dd></div></dl>'
     body = body.replace('<!--LEGAL_METADATA-->', meta)
     alternates = ''.join(f'<link rel="alternate" hreflang="{other}" href="{origin + route(other,page)}">' for other in config['languages'])
     languages = ''.join(f'<a href="{route(other,page)}" lang="{other}" hreflang="{other}"'+(' aria-current="page"' if other == lang else '')+f'>{translations[other]["lang_name"]}</a>' for other in config['languages'])
+    legal_page = page in ('privacy', 'terms', 'history') or archive_version is not None
     def nav_item(target, label):
-        current = ' aria-current="page"' if (page == target or (target == 'product' and page in ('privacy','terms','history','archive'))) else ''
+        current = ' aria-current="page"' if page == target or (target == 'product' and legal_page) else ''
         return f'<a href="{route(lang,target)}"{current}>{label}</a>'
     navigation = nav_item('product',t['products']) + nav_item('support',t['support'])
     banner = f'<div class="draft-banner" role="status">{t["draft"]}</div>' if is_draft else ''
-    robots = 'noindex, nofollow' if is_draft or page == 'archive' else 'index, follow'
+    robots = 'noindex, nofollow' if is_draft or archive_version else 'index, follow'
     return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{escape(title)}</title><meta name="description" content="{escape(t['page_description'],quote=True)}"><meta name="robots" content="{robots}"><meta name="color-scheme" content="light dark"><link rel="canonical" href="{canonical}">{alternates}<link rel="stylesheet" href="/assets/site.css"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"></head>
 <body><a class="skip" href="#main">{t['skip']}</a>{banner}<header class="site-header"><a class="wordmark" href="{route(lang,'home')}" aria-label="InWestMan · {t['home']}">InWestMan<span class="brand-dot">.</span></a><nav aria-label="{t['menu']}">{navigation}</nav><nav class="languages" aria-label="{t['language']}">{languages}</nav></header>
@@ -154,7 +171,7 @@ def build_site(source, output, publish=False):
     (output / '.nojekyll').touch()
     (output / 'CNAME').write_text('inwestman.uk\n')
     (output / 'robots.txt').write_text('User-agent: *\n' + ('Disallow: /\n' if config['legal_status'] == 'draft' else 'Allow: /\nSitemap: https://inwestman.uk/sitemap.xml\n'))
-    urls = ''.join(f'<url><loc>{config["origin"] + route(lang,page)}</loc></url>' for lang in config['languages'] for page in ROUTES if page != 'archive')
+    urls = ''.join(f'<url><loc>{config["origin"] + route(lang,page)}</loc></url>' for lang in config['languages'] for page in ROUTES if page not in ARCHIVED_PRIVACY)
     (output / 'sitemap.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     return output
 

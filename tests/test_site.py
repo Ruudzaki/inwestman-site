@@ -46,14 +46,15 @@ class PublisherSiteTest(unittest.TestCase):
         shutil.copytree(SOURCE / 'assets', self.source / 'assets')
         config = json.loads((SOURCE / 'site.json').read_text())
         # Draft rejection is a fixture, not an assumption about the real release.
-        config.update(legal_status='draft', effective_date=None, legal_version='2026-11-13-draft-1')
+        config.update(legal_status='draft', effective_date=None,
+                      legal_version='2026-11-13-draft-1', privacy_version='2026-11-13-draft-1')
         (self.source / 'site.json').write_text(json.dumps(config))
         self.output = Path(self.temp.name) / 'site'
         build_site(self.source, self.output)
 
     def test_every_page_has_equivalent_languages_and_accessible_landmarks(self):
         pages = list(self.output.rglob('*.html'))
-        self.assertEqual(24, len(pages))
+        self.assertEqual(27, len(pages))
         for page in pages:
             text = page.read_text()
             document = Document(text)
@@ -96,14 +97,18 @@ class PublisherSiteTest(unittest.TestCase):
     def test_approved_release_has_a_real_effective_date_and_current_history(self):
         source = self.source
         config = json.loads((SOURCE / 'site.json').read_text())
-        config.update(legal_status='approved', effective_date='2026-11-14', legal_version='2026-11-14')
+        config.update(legal_status='approved', effective_date='2026-11-14',
+                      legal_version='2026-11-14', privacy_version='2026-11-14.1')
         (source / 'site.json').write_text(json.dumps(config))
         output = Path(self.temp.name) / 'approved-site'
         build_site(source, output, publish=True)
         terms = (output / 'products/ledglet/terms/index.html').read_text()
         self.assertIn('data-legal-status="approved"', terms)
-        self.assertIn('2026-11-14', terms)
+        self.assertIn('<dd>2026-11-14</dd>', terms)
+        self.assertNotIn('<dd>2026-11-14.1</dd>', terms)
         self.assertNotIn('Draft for review', terms)
+        privacy = (output / 'products/ledglet/privacy/index.html').read_text()
+        self.assertIn('<dd>2026-11-14.1</dd>', privacy)
         history = (output / 'products/ledglet/legal-history/index.html').read_text()
         self.assertIn('Current version', history)
         self.assertNotIn('Current review draft', history)
@@ -160,6 +165,23 @@ class PublisherSiteTest(unittest.TestCase):
                 'https://policies.google.com/privacy',
             ):
                 self.assertIn(endpoint, current)
+
+    def test_country_disclosure_is_in_current_policy_and_previous_version_is_archived(self):
+        country_disclosures = {
+            'en': 'RevenueCat discards the IP address and keeps the country',
+            'uk': 'RevenueCat видаляє IP-адресу та зберігає відомості про країну',
+            'ru': 'RevenueCat удаляет IP-адрес и сохраняет сведения о стране',
+        }
+        for lang, disclosure in country_disclosures.items():
+            with self.subTest(lang=lang):
+                prefix = '' if lang == 'en' else f'{lang}/'
+                product = self.output / prefix / 'products/ledglet'
+                current = (product / 'privacy/index.html').read_text()
+                previous = (product / 'legal-history/2026-11-24/privacy/index.html').read_text()
+                self.assertIn(disclosure, current)
+                self.assertNotIn(disclosure, previous)
+                self.assertIn('data-legal-status="archived"', previous)
+                self.assertIn('<dd>2026-11-24</dd>', previous)
 
 
 if __name__ == '__main__':
