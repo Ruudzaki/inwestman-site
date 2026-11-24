@@ -2,6 +2,7 @@ import hashlib
 import json
 from html.parser import HTMLParser
 from pathlib import Path
+import re
 import shutil
 import sys
 import tempfile
@@ -147,8 +148,17 @@ class PublisherSiteTest(unittest.TestCase):
         for lang in ('en', 'uk', 'ru'):
             current = (SOURCE / f'content/{lang}/privacy.html').read_text()
             original = (SOURCE / f'content/archive/2026-11-08/{lang}/privacy.html').read_text()
-            self.assertEqual(original.count('<h2>'), current.count('<h2>'))
-            for endpoint in ('bank.gov.ua', 'api.frankfurter', 'support@inwestman.uk'):
+            original_headings = re.findall(r'<h2>(.*?)</h2>', original)
+            current_headings = re.findall(r'<h2>(.*?)</h2>', current)
+            self.assertEqual(
+                original_headings,
+                [heading for heading in current_headings if heading in original_headings],
+            )
+            for endpoint in (
+                'bank.gov.ua', 'api.frankfurter', 'support@inwestman.uk',
+                'https://www.revenuecat.com/privacy/', 'https://www.cloudflare.com/privacypolicy/',
+                'https://policies.google.com/privacy',
+            ):
                 self.assertIn(endpoint, current)
 
 
