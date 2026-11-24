@@ -22,6 +22,7 @@ const path = require("node:path");
     "products/ledglet/terms/",
     "products/ledglet/legal-history/",
     "products/ledglet/legal-history/2026-11-08/privacy/",
+    "products/ledglet/legal-history/2026-11-24/privacy/",
   ];
   const results = [];
   try {
